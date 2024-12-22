@@ -1,4 +1,4 @@
-// ----- Профиль модалки
+// ----- Модалки
 const allPopups = document.querySelectorAll('.popup');
 const profilePopup = document.querySelector('.popup_type_edit');
 const cardPopup = document.querySelector('.popup_type_new-card');
@@ -13,6 +13,8 @@ const profileInfoAbout = document.querySelector('.profile__description');
 
 const profileEditButton = document.querySelector('.profile__edit-button');
 
+const profilePopupForm = profilePopup.querySelector('.popup__form')
+
 // ----- Добавление карточки
 const cardTemplate = document.querySelector('#card-template').content;
 
@@ -21,6 +23,8 @@ const inputUrl = document.querySelector('.popup__input_type_url');
 
 const cardAddButton = document.querySelector('.profile__add-button');
 const cardsContainer = document.querySelector('.places__list');
+
+const cardPopupForm = cardPopup.querySelector('.popup__form')
 
 // ----- Просмотр карточки
 const imagePopupImage = document.querySelector('.popup__image');
@@ -124,11 +128,11 @@ function renderExistingCards() {
 
 // Открытие и сохранение профиля
 profileEditButton.addEventListener('click', openProfileForm)
-profilePopup.addEventListener('submit', handleProfileFormSubmit);
+profilePopupForm.addEventListener('submit', handleProfileFormSubmit);
 
 // Открытие и добавление карточки
 cardAddButton.addEventListener('click', openCardForm);
-cardPopup.addEventListener('submit', handleCardFormSubmit);
+cardPopupForm.addEventListener('submit', handleCardFormSubmit);
 
 
 // Закрытие модалки
