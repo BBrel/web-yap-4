@@ -67,14 +67,23 @@ function createCard(title, url) {
     return newCard;
 }
 
+// Закрытие модалок на exc
+function closeByEsc(evt) {
+    if (evt.key === "Escape") {
+        const openedPopup = document.querySelector('.popup_is-opened');
+        closeModal(openedPopup);
+    }
+}
 
 // Фун-ии открытия/закрытия модалок
 function openModal(popup) {
     popup.classList.add('popup_is-opened');
+    document.addEventListener('keydown', closeByEsc);
 }
 
 function closeModal(popup) {
     popup.classList.remove('popup_is-opened');
+    document.removeEventListener('keydown', closeByEsc);
 }
 
 
@@ -139,6 +148,12 @@ cardPopupForm.addEventListener('submit', handleCardFormSubmit);
 allPopups.forEach((popup) => {
     const closeButton = popup.querySelector('.popup__close');
     closeButton.addEventListener('click', () => closeModal(popup));
+    // Закрытие модалки кликом на overlay
+    popup.addEventListener('click', (evt) => {
+        if (evt.target === popup) {
+            closeModal(popup);
+        }
+    });
 });
 
 // Добавляем для каждого поп-апа анимацию открытия/закрытия
